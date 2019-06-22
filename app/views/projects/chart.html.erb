@@ -1,0 +1,7 @@
+<% if @chart_data.present? %>
+	<%= pie_chart @chart_data, height: '500px' %>
+<% else %>
+	<h3>Tasks not found</h3>
+<% end %>
+
+<%= link_to 'Back', projects_path %>

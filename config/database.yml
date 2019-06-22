@@ -1,0 +1,35 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: project_management_dev
+  username: postgres
+  password: postgres
+  host: localhost
+
+test: &test
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: project_management__test
+  username: postgres
+  password: postgres
+  host: localhost
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: postgres
+  database: project_management_staging
+  host: localhost
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: postgres
+  database: project_management_prod
+  host: localhost

@@ -1,0 +1,33 @@
+<% if @tasks.present? %>
+	<table>
+		<tr>
+			<th> Project </th>
+			<th> Task </th>
+			<th> Status </th>
+		</tr>
+		<% @tasks.each do |task| %>
+			<tr>
+				<td> <%= task.project.name %> </td>
+				<td> <%= task.feature_name %> </td>
+				<td> <%= select_tag :status, options_for_select(Task.statuses.map {|key, value| [key.humanize.capitalize, value]}, task.status), class: 'status', data: {task_id: task.id, project_id: task.project.id} %> </td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<p> Records not found </p>
+<% end %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.status').change(function(){
+			$.ajax({
+				url: 'status_update',
+				type: 'post',
+				data: {status: this.value, id: $(this).attr('data-task-id'), project_id: $(this).attr('data-project-id') },
+				dataType: 'json',
+				success: function(data){
+					$('p.notice').text('Status updated successfully')
+				}
+			})
+		});
+	});
+</script>

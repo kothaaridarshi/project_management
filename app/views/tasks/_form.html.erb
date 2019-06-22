@@ -1,0 +1,20 @@
+<%= form_for [@project, @task] do |f| %>
+  <% if @task.errors.any? %>
+    <h2><%= pluralize(@task.errors.count, "error") %> prohibited this item from being saved:</h2>
+		<ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :feature_name %>
+  <%= f.text_field :feature_name %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <br>
+  <%= f.label :developer %>
+  <%= f.select :developer_id, @dev_users.collect { |d| [ d.email, d.id ] }, include_blank: true %>
+  <br><%= f.submit "Submit" %>
+<% end %>
+<br><%= link_to 'Back', project_tasks_path(@project) %>

@@ -1,0 +1,9 @@
+<table style="border-collapse: collapse;">
+	<tr style="border-bottom: 1px dashed #000;">
+		<th> Status </th>
+		<% @projects.each do |project| %>
+			<th><%= project.name %></th>
+		<% end %>
+	</tr>
+	<%= render 'status', data: @projects, id: 'project_id' %>
+</table>

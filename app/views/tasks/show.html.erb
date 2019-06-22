@@ -1,0 +1,6 @@
+Feature Name: <%= @task.feature_name %>
+<br>
+Description: <%= @task.description %>
+<br>
+Developer: <%= @task.user.email %>
+<br><%= link_to 'Back', project_tasks_path %>

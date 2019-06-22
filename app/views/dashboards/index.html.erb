@@ -1,0 +1,8 @@
+<% if current_user.admin? %>
+	<%= render 'admin_dashboard' %>
+<% else %>
+	<%= render 'developer_dashboard' %>
+<% end %>
+<br>
+<%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+

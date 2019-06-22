@@ -1,0 +1,13 @@
+<% Task.statuses.keys.each do |status| %>
+	<tr style="border-bottom: 1px dashed #000;">
+		<td> <%= status %> </td>
+		<% data.each do |d| %>
+			<% tasks = @tasks.where("#{id}": d.id, status: Task.statuses[status]) %>
+			<td>
+				<% tasks.each do |task| %>
+					<%= task.feature_name %><br>
+				<% end %>
+			</td>
+		<% end %>
+	</tr>
+<% end %>

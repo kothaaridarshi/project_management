@@ -1,0 +1,22 @@
+<% if @projects.present? %>
+  <table>
+    <tr>
+      <th> Name </th>
+      <th> Description </th>
+      <th colspan='5'> Actions </th>
+    </tr>
+    <% @projects.each do |project| %>
+      <tr>
+        <td> <%= project.name %> </td>
+        <td> <%= project.description %> </td>
+        <td> <%= link_to 'Show', project_path(project) %> </td>
+        <td> <%= link_to 'Edit', edit_project_path(project) %> </td>
+        <td> <%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %> </td>
+        <td> <%= link_to 'Todos', project_tasks_path(project) %> </td>
+        <td><%= link_to('Chart', project_chart_path(project)) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<%= link_to 'Add new project', new_project_path %>
+<%= link_to 'Back', root_path %>

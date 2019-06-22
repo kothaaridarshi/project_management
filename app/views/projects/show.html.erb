@@ -1,0 +1,8 @@
+<% developers = @dev_users.pluck(:email).join(',') %>
+Name: <%= @project.name %>
+<br>
+description: <%= @project.description %>
+<br>
+developers: <%= developers.present? ? developers : 'No developers assigned' %>
+<br>
+<%= link_to 'Back', projects_path %>

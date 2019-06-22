@@ -1,0 +1,9 @@
+<table style="border-collapse: collapse;">
+	<tr style="border-bottom: 1px dashed #000;">
+		<th> Status </th>
+		<% @developers.each do |developer| %>
+			<th><%= developer.email %></th>
+		<% end %>
+	</tr>
+	<%= render 'status', data: @developers, id: 'developer_id' %>
+</table>

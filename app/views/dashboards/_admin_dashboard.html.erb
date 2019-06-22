@@ -1,0 +1,15 @@
+<h3> Developer wise task status </h3>
+<% if @developers.present? %>
+	<%= render 'developer_wise_task_status' %>
+<% else %>
+	<p> Records not found </p>
+<% end %>
+<br>
+<h3> Project wise task status </h3>
+<% if @projects.present? %>
+	<%= render 'project_wise_task_status' %>
+<% else %>
+	<p> Records not found </p>
+<% end %>
+<br>
+<%= link_to('Project Management', projects_path) %>

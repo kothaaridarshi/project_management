@@ -1,0 +1,25 @@
+<% if @tasks.present? %>
+  <h4> Project: <%= @project.name %> </h2>
+  <table>
+    <tr>
+      <th> Feature Name </th>
+      <th> Description </th>
+      <th> Developer </th>
+      <th> Status </th>
+      <th colspan='4'> Actions </th>
+    </tr>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td> <%= task.feature_name %> </td>
+        <td> <%= task.description %> </td>
+        <td> <%= task&.user&.email %> </td>
+        <td> <%= Task.statuses.invert[task.status].humanize %> </td>
+        <td> <%= link_to 'Show', project_task_path(@project, task) %> </td>
+        <td> <%= link_to 'Edit', edit_project_task_path(@project, task) %> </td>
+        <td> <%= link_to 'Delete', [@project, task], method: :delete, data: { confirm: 'Are you sure you want to delete?' } %> </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<%= link_to 'Add new project task', new_project_task_path(@project) %>
+<%= link_to 'Go to Projects', projects_path %>

@@ -1,0 +1,21 @@
+<%= form_for @project do |f| %>
+  <% if @project.errors.any? %>
+    <h2><%= pluralize(@project.errors.count, "error") %> prohibited this item_category from being saved:</h2>
+    <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br>
+  <%= label_tag :developers %>
+  <%= select_tag 'developer_ids', options_for_select(@dev_users.map { |d| [d.email, d.id] }, @selected_users.pluck(:id)), multiple: true %>
+  <br>
+  <%= f.submit "Submit" %>
+<% end %>
+<br><%= link_to 'Back', projects_path %>
