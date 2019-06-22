@@ -10,7 +10,7 @@ class User < ApplicationRecord
 	has_many :projects, dependent: :destroy, foreign_key: :admin_id
 	has_many :tasks, dependent: :destroy, foreign_key: :developer_id
 	has_many :developer_projects, dependent: :destroy, foreign_key: :developer_id
-	has_many :dev_projects, -> { distinct },through: :developer_projects, source: :project, after_remove: :remove_task_assignements
+	has_many :dev_projects, -> { distinct },through: :developer_projects, source: :project
 
 	# Callbacks
 	before_validation :set_role
@@ -29,9 +29,4 @@ class User < ApplicationRecord
 	def set_role
   	self.role ||= Role.find_by_name('developer')
 	end        
-
-	def remove_task_assignements
-		binding.pry
-		Task.where(project_id: project_id, developer_id: developer_id).update_all(developer_id: nil)
-	end
 end
